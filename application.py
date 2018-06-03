@@ -10,11 +10,11 @@ class Application:
 
     def open_home_page(self):
         wd = self.wd
-        self.open_home_page()
         wd.get("http://localhost/addressbook/")
 
     def login(self, username, password):
         wd = self.wd
+        self.open_home_page()
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys(password)
@@ -25,11 +25,11 @@ class Application:
 
     def open_groups_page(self):
         wd = self.wd
-        self.open_groups_page()
         wd.find_element_by_link_text("groups").click()
 
     def create_group(self, group):
         wd = self.wd
+        self.open_groups_page()
         # init group creation
         wd.find_element_by_name("new").click()
         # feel group form
@@ -44,10 +44,10 @@ class Application:
         wd.find_element_by_name("group_footer").send_keys(group.footer)
         # submit group creation
         wd.find_element_by_name("submit").click()
+        self.return_to_groups_page()
 
     def return_to_groups_page(self):
         wd = self.wd
-        self.return_to_groups_page()
         wd.find_element_by_link_text("group page").click()
 
     def logout(self):
